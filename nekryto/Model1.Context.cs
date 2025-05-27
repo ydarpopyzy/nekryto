@@ -13,10 +13,10 @@ namespace nekryto
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBEntities : DbContext
+    public partial class user36015Entities : DbContext
     {
-        public DBEntities()
-            : base("name=DBEntities")
+        public user36015Entities()
+            : base("name=user36015Entities")
         {
         }
     

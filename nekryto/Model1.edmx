@@ -18,7 +18,7 @@
             <PropertyRef Name="OrderID" />
           </Key>
           <Property Name="OrderID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="OrderDate" Type="date" Nullable="false" />
           <Property Name="TotalCost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
@@ -176,7 +176,7 @@
             <PropertyRef Name="OrderID" />
           </Key>
           <Property Name="OrderID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TotalCost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
@@ -296,7 +296,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="user36015Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Orders" EntityType="Self.Orders" />
           <EntitySet Name="Products" EntityType="Self.Products" />
@@ -329,7 +329,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище user36015ModelContainer" CdmEntityContainer="DBEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище user36015ModelContainer" CdmEntityContainer="user36015Entities">
           <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="user36015Model.Category">
               <MappingFragment StoreEntitySet="Category">

@@ -19,7 +19,7 @@ namespace nekryto
     /// </summary>
     public partial class Products : Window
     {
-        DBEntities db = new DBEntities();
+        user36015Entities db = new user36015Entities();
         private List<Products> products;
         public Products(string username)
         {

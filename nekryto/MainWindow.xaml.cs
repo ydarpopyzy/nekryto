@@ -20,7 +20,7 @@ namespace nekryto
     /// </summary>
     public partial class MainWindow : Window
     {
-        DBEntities db=new DBEntities();
+        user36015Entities db =new user36015Entities();
         public MainWindow()
         {
 

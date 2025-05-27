@@ -15,7 +15,7 @@ namespace nekryto
     public partial class Orders
     {
         public int OrderID { get; set; }
-        public string Quantity { get; set; }
+        public int Quantity { get; set; }
         public System.DateTime OrderDate { get; set; }
         public decimal TotalCost { get; set; }
         public int UserID { get; set; }
