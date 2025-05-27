@@ -47,7 +47,9 @@ namespace nekryto
 
         private void Guest_Click(object sender, RoutedEventArgs e)
         {
-
+            var productsWindow = new Products(null);
+            productsWindow.Show();
+            this.Close();
         }
     }
 }

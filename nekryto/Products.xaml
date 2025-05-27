@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:nekryto"
         mc:Ignorable="d"
-        Title="Products" Height="450" Width="800">
+        Title="Products" Height="450" Width="820">
     <Grid>
-        <ListView x:Name="ProductsListView" Background="#FFF8E1 " Foreground="#FFB300 " Margin="0,19,-43,0" Grid.Row="1" Grid.ColumnSpan="3">
+        <ListView x:Name="ProductsListView" Background="#FFF8E1 " Foreground="#FFB300 " Margin="0,19,-65,0" Grid.Row="1" Grid.ColumnSpan="3">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

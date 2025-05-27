@@ -28,14 +28,15 @@ namespace nekryto
 
             products = db.Products.ToList();
 
-            //var orders = db.Orders.ToList();
-           //decimal maxSales = orders.Sum(o => o.TotalCost);
+            var orders = db.Orders.ToList();
+           decimal totalSales = orders.Sum(o => o.Quantity * o.Products.Price);
+           decimal maxSales = orders.Sum(o => o.TotalCost);
 
-            //foreach (var product in products)
-            //{
-            //   // product.Discount = CalculateDiscount(maxSales, totalSales);
-            //    product.DiscountedPrice = product.Price * (1 - product.Discount / 100);
-            //}
+            foreach (var product in products)
+            {
+                product.Discount = CalculateDiscount(maxSales, totalSales);
+                product.DiscountedPrice = Math.Round(product.Price * (1 - product.Discount / 100),2);
+            }
 
         }
         private decimal CalculateDiscount(decimal maxSales, decimal totalSales)
