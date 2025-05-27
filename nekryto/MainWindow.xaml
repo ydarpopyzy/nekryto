@@ -1,0 +1,88 @@
+﻿<Window x:Class="nekryto.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:nekryto"
+        mc:Ignorable="d"
+       Title="Авторизация - Домовой" Height="350" Width="400" ResizeMode="NoResize">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+            <TextBlock Text="Добро пожаловать в 'Домовой'" FontSize="16" Margin="0,0,0,20" TextAlignment="Center"/>
+            
+            <!-- Текстовое поле для логина -->
+            <TextBox x:Name="UsernameTextBox" Margin="0,0,0,10" Padding="5">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Grid>
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}">
+                                            <ScrollViewer x:Name="PART_ContentHost"/>
+                                        </Border>
+                                        <TextBlock Text="Логин" Foreground="Gray" Margin="5,0,0,0"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            
+            <!-- Поле для пароля -->
+            <PasswordBox x:Name="PasswordBox" Margin="0,0,0,10" Padding="5">
+                <PasswordBox.Style>
+                    <Style TargetType="PasswordBox">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="PasswordBox">
+                                    <Grid>
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}">
+                                            <ScrollViewer x:Name="PART_ContentHost"/>
+                                        </Border>
+                                        <TextBlock Text="Пароль" Foreground="Gray" Margin="5,0,0,0"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </PasswordBox.Style>
+            </PasswordBox>
+            
+            <!-- CAPTCHA элементы (изначально скрыты) -->
+            <StackPanel x:Name="captchaPanel" Visibility="Collapsed">
+                <Image x:Name="captchaImage" Height="50" Margin="0,0,0,10"/>
+                <TextBox x:Name="txtCaptcha" Margin="0,0,0,10" Padding="5">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Grid>
+                                            <Border Background="{TemplateBinding Background}" 
+                                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                                <ScrollViewer x:Name="PART_ContentHost"/>
+                                            </Border>
+                                            <TextBlock Text="Введите CAPTCHA" Foreground="Gray" Margin="5,0,0,0"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+            </StackPanel>
+            
+            <Button Content="Войти" Click="Login_Click" Padding="10,5" Margin="0,0,0,10"/>
+            <Button Content="Продолжить как гость" Click="Guest_Click" Padding="10,5"/>
+            
+            <TextBlock x:Name="lblError" Foreground="Red" TextWrapping="Wrap" Visibility="Collapsed"/>
+        </StackPanel>
+    </Grid>
+</Window>
