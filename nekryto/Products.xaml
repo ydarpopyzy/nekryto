@@ -7,6 +7,44 @@
         mc:Ignorable="d"
         Title="Products" Height="450" Width="800">
     <Grid>
-        
+        <ListView x:Name="ProductsListView" Background="#FFF8E1 " Foreground="#FFB300 " Margin="0,19,-43,0" Grid.Row="1" Grid.ColumnSpan="3">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Width="100" Height="100" Margin="0,0,10,0" Source="{Binding image}"/>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding ProductName}" FontSize="16" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Margin="0,0,0,5">
+                         <Run Text="Бренд: " FontFamily="Pacifico"/>
+                         <Run Text="{Binding Brand}" FontFamily="Pacifico" FontSize="14" />
+                            </TextBlock>
+                            <TextBlock Margin="0,0,0,5">
+                            </TextBlock>
+                            <TextBlock Margin="5,0,0,0" >
+                         <Run Text="Цена:" FontSize="14" FontFamily="Pacifico"/>
+                     <Run Text="{Binding Price}" TextDecorations="Strikethrough" FontSize="14" FontFamily="Pacifico"/>
+                     <Run Text="₽" FontSize="14"/>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            <TextBlock Margin="500,0,0,0">
+                     <Run Text="Скидка:" FontSize="14" FontFamily="Pacifico"/>
+                     <Run Text="{Binding Discount}" FontFamily="Pacifico" FontSize="14"/>
+                     <Run Text="%" FontFamily="Pacifico" FontSize="14"/>
+                            </TextBlock>
+                            <TextBlock Margin="500,0,10,0">
+                     <Run Text="Цена со скидкой:" FontSize="14" FontFamily="Pacifico"/>
+                     <Run Text="{Binding DiscountedPrice}" FontFamily="Pacifico" FontSize="14"/>
+                     <Run Text="₽" FontSize="14"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
