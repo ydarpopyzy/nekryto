@@ -7,7 +7,17 @@
         mc:Ignorable="d"
         Title="Products" Height="450" Width="820">
     <Grid>
-        <ListView x:Name="ProductsListView" Background="#FFF8E1 " Foreground="#FFB300 " Margin="0,19,-65,0" Grid.Row="1" Grid.ColumnSpan="3">
+
+        <StackPanel Orientation="Horizontal" Margin="10,16,10,30" Grid.RowSpan="2" Grid.ColumnSpan="3" >
+            <ComboBox x:Name="BrandCombo" Background="#FFF8E1" Foreground="#FFB300 " Width="150" Height="20" VerticalAlignment="Top" Margin="0,0,10,0" SelectionChanged="BrandCombo_SelectionChanged_1"/>
+            <ComboBox x:Name="CategoryCombo" Background="#FFF8E1" Foreground="#FFB300 " Width="150" Height="20" VerticalAlignment="Top" Margin="0,0,10,0" SelectionChanged="CategoryCombo_SelectionChanged_1"/>
+            <TextBox x:Name="SearchBox"  Background="#FFF8E1" Foreground="#FFB300 " Width="200" Height="20" VerticalAlignment="Top" Margin="0,0,10,0" TextChanged="SearchBox_TextChanged"/>
+            <Button Content="По возрастанию" Background="#FFF8E1" Foreground="#FFB300 " Click="SortAsc_Click" Height="20" VerticalAlignment="Top" Margin="0,0,10,0"/>
+            <Button Content="По убыванию" Background="#FFF8E1" Foreground="#FFB300 " Height="20" VerticalAlignment="Top" Click="SortDesc_Click"/>
+            <Button x:Name="basket" Content="корзина" Background="#FFF8E1" Foreground="#FFB300 " Height="20" VerticalAlignment="Top" Click="Button_Click" Margin="10,0,10,0"/>
+        </StackPanel>
+
+        <ListView x:Name="ProductsListView" Background="#FFF8E1 " Foreground="#FFB300 " Margin="0,46,-65,-27">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -15,6 +25,8 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+                        
+                        
                         <Image Grid.Column="0" Width="100" Height="100" Margin="0,0,10,0" Source="{Binding image}"/>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBlock Text="{Binding ProductName}" FontSize="16" FontWeight="Bold" Margin="0,0,0,5"/>

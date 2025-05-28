@@ -20,7 +20,7 @@ namespace nekryto
     /// </summary>
     public partial class MainWindow : Window
     {
-        user36015Entities db =new user36015Entities();
+        user36015Entities db = new user36015Entities();
         public MainWindow()
         {
 
@@ -31,17 +31,23 @@ namespace nekryto
         {
 
             var enter = db.Users.FirstOrDefault(x => x.UserName == UsernameTextBox.Text && x.Password == PasswordBox.Password);
-
-            if (enter == null)
+            try
             {
-                MessageBox.Show("Такого пользователя нет!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (enter == null)
+                {
+                    MessageBox.Show("Такого пользователя нет!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show($"Добро пожаловать, {UsernameTextBox.Text}!", "Успешный вход", MessageBoxButton.OK, MessageBoxImage.Information);
+                    var productsWindow = new Products(UsernameTextBox.Text);
+                    productsWindow.Show();
+                    this.Close();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show($"Добро пожаловать, {UsernameTextBox.Text}!", "Успешный вход", MessageBoxButton.OK, MessageBoxImage.Information);
-                var productsWindow = new Products(UsernameTextBox.Text);
-                productsWindow.Show();
-                this.Close();
+                MessageBox.Show($"Ошибка: {ex.Message}", "Попробуйте потом", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -10,7 +10,6 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
             <TextBlock Text="Добро пожаловать в 'Домовой'" FontSize="16" Margin="0,0,0,20" TextAlignment="Center"/>
             
-            <!-- Текстовое поле для логина -->
             <TextBox x:Name="UsernameTextBox" Margin="0,0,0,10" Padding="5">
                 <TextBox.Style>
                     <Style TargetType="TextBox">
@@ -32,7 +31,6 @@
                 </TextBox.Style>
             </TextBox>
             
-            <!-- Поле для пароля -->
             <PasswordBox x:Name="PasswordBox" Margin="0,0,0,10" Padding="5">
                 <PasswordBox.Style>
                     <Style TargetType="PasswordBox">
