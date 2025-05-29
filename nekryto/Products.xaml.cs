@@ -87,10 +87,6 @@ namespace nekryto
         }
         private void BrandCombo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            if (BrandCombo.SelectedIndex == 0)
-                ProductsListView.ItemsSource = products;
-            else
-                ProductsListView.ItemsSource = products.Where(p => p.Brand == BrandCombo.SelectedItem.ToString()).ToList();
             UpdateProducts();
         }
         private void CategoryCombo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
