@@ -5,58 +5,238 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:nekryto"
         mc:Ignorable="d"
-        Title="Products" Height="450" Width="820">
+        Title="Каталог товаров" 
+        WindowStartupLocation="CenterScreen"
+        Width="1200" Height="800" Background="#FFF8E1" Foreground="#FFB300">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#FFB300"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style x:Key="SearchTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <Border Background="#FFF8E1" 
+                                    BorderThickness="{TemplateBinding BorderThickness}"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"/>
+                            <TextBlock x:Name="placeholderText" 
+                                       Text="Поиск товаров..." 
+                                       Foreground="#FFB300"
+                                       Margin="8,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Visibility="Collapsed"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="placeholderText" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Margin="10,16,10,30" Grid.RowSpan="2" Grid.ColumnSpan="3" >
-            <ComboBox x:Name="BrandCombo" Background="#FFF8E1" Foreground="#FFB300 " Width="150" Height="20" VerticalAlignment="Top" Margin="0,0,10,0" SelectionChanged="BrandCombo_SelectionChanged_1"/>
-            <ComboBox x:Name="CategoryCombo" Background="#FFF8E1" Foreground="#FFB300 " Width="150" Height="20" VerticalAlignment="Top" Margin="0,0,10,0" SelectionChanged="CategoryCombo_SelectionChanged_1"/>
-            <TextBox x:Name="SearchBox"  Background="#FFF8E1" Foreground="#FFB300 " Width="200" Height="20" VerticalAlignment="Top" Margin="0,0,10,0" TextChanged="SearchBox_TextChanged"/>
-            <Button Content="По возрастанию" Background="#FFF8E1" Foreground="#FFB300 " Click="SortAsc_Click" Height="20" VerticalAlignment="Top" Margin="0,0,10,0"/>
-            <Button Content="По убыванию" Background="#FFF8E1" Foreground="#FFB300 " Height="20" VerticalAlignment="Top" Click="SortDesc_Click"/>
-            <Button x:Name="basket" Content="корзина" Background="#FFF8E1" Foreground="#FFB300 " Height="20" VerticalAlignment="Top" Click="Button_Click" Margin="10,0,10,0"/>
-        </StackPanel>
+        <Border Grid.Row="0" Padding="15" Margin="0,0,0,30" BorderThickness="0 0 0 1" BorderBrush="#FFB300">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Image Width="32" Height="32" Margin="0,0,15,0"/>
+                <TextBlock Text="КАРТОТЕКА ТОВАРОВ" 
+                           FontSize="18" 
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
 
-        <ListView x:Name="ProductsListView" Background="#FFF8E1 " Foreground="#FFB300 " Margin="0,46,-65,-27">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        
-                        
-                        <Image Grid.Column="0" Width="100" Height="100" Margin="0,0,10,0" Source="{Binding image}"/>
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding ProductName}" FontSize="16" FontWeight="Bold" Margin="0,0,0,5"/>
-                            <TextBlock Margin="0,0,0,5">
-                         <Run Text="Бренд: " FontFamily="Pacifico"/>
-                         <Run Text="{Binding Brand}" FontFamily="Pacifico" FontSize="14" />
-                            </TextBlock>
-                            <TextBlock Margin="0,0,0,5">
-                            </TextBlock>
-                            <TextBlock Margin="5,0,0,0" >
-                         <Run Text="Цена:" FontSize="14" FontFamily="Pacifico"/>
-                     <Run Text="{Binding Price}" TextDecorations="Strikethrough" FontSize="14" FontFamily="Pacifico"/>
-                     <Run Text="₽" FontSize="14"/>
-                            </TextBlock>
-                        </StackPanel>
-                        <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Right">
-                            <TextBlock Margin="500,0,0,0">
-                     <Run Text="Скидка:" FontSize="14" FontFamily="Pacifico"/>
-                     <Run Text="{Binding Discount}" FontFamily="Pacifico" FontSize="14"/>
-                     <Run Text="%" FontFamily="Pacifico" FontSize="14"/>
-                            </TextBlock>
-                            <TextBlock Margin="500,0,10,0">
-                     <Run Text="Цена со скидкой:" FontSize="14" FontFamily="Pacifico"/>
-                     <Run Text="{Binding DiscountedPrice}" FontFamily="Pacifico" FontSize="14"/>
-                     <Run Text="₽" FontSize="14"/>
-                            </TextBlock>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Border Grid.Row="0" Padding="10" Margin="0 60 0 0" BorderThickness="0 0 0 1" BorderBrush="#FFB300">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="178*"/>
+                    <ColumnDefinition Width="31*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="451*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="SearchBox" 
+                         Grid.Column="0"
+                         Style="{StaticResource SearchTextBoxStyle}" Grid.ColumnSpan="4" Margin="5,5,5,5"
+                         TextChanged="SearchBox_TextChanged" Cursor=""/>
+
+                <ComboBox x:Name="CategoryCombo"
+                          Grid.Column="4"
+                          Background="#FFF8E1"
+                          Foreground="#FFB300"
+                          Width="200"
+                          Margin="5,5,5,5"
+                          Padding="8"
+                          SelectionChanged="CategoryCombo_SelectionChanged_1"/>
+
+                <ComboBox x:Name="BrandCombo"
+                          Grid.Column="5"
+                          Background="#FFF8E1"
+                          Foreground="#FFB300"
+                          Width="150"
+                          Margin="5,5,5,5"
+                          Padding="8"
+                          SelectionChanged="BrandCombo_SelectionChanged_1"/>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+
+            <ListView x:Name="ProductsListView"
+                      Grid.Column="0"
+                      Margin="0 0 10 0"
+                      Background="#FFF8E1"
+                      BorderThickness="1"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0" Width="100" Height="100" Margin="0,0,10,0" Source="{Binding image}"/>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding ProductName}" FontSize="16" FontWeight="Bold" Margin="0,0,0,5"/>
+                                <TextBlock Margin="0,0,0,5">
+                                    <Run Text="Бренд: " FontFamily="Pacifico"/>
+                                    <Run Text="{Binding Brand}" FontFamily="Pacifico" FontSize="14" />
+                                </TextBlock>
+                                <TextBlock Margin="0,0,0,5">
+                                </TextBlock>
+                                <TextBlock Margin="5,0,0,0" >
+                                    <Run Text="Цена:" FontSize="14" FontFamily="Pacifico"/>
+                                    <Run Text="{Binding Price}" TextDecorations="Strikethrough" FontSize="14" FontFamily="Pacifico"/>
+                                    <Run Text="₽" FontSize="14"/>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <TextBlock>
+                                    <Run Text="Скидка:" FontSize="14" FontFamily="Pacifico"/>
+                                    <Run Text="{Binding Discount}" FontFamily="Pacifico" FontSize="14"/>
+                                    <Run Text="%" FontFamily="Pacifico" FontSize="14"/>
+                                </TextBlock>
+                                <TextBlock Margin="0,5,0,0">
+                                    <Run Text="Цена со скидкой:" FontSize="14" FontFamily="Pacifico"/>
+                                    <Run Text="{Binding DiscountedPrice}" FontFamily="Pacifico" FontSize="14"/>
+                                    <Run Text="₽" FontSize="14"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Border Grid.Column="1"
+                    BorderThickness="1"
+                    Padding="15">
+                <StackPanel>
+                    <TextBlock Text="Детали товара"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Margin="0 0 0 15"/>
+
+                    <Image x:Name="ProductImage"
+                           Width="200"
+                           Height="200"
+                           Stretch="Uniform"
+                           Margin="0 0 0 15"/>
+
+                    <TextBlock x:Name="ProductNameText"
+                               FontSize="16"
+                               FontWeight="SemiBold"/>
+
+                    <TextBlock x:Name="ProductPriceText"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Margin="0 5 0 15"/>
+
+                    <TextBlock x:Name="ProductDescriptionText"
+                               TextWrapping="Wrap"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Margin="0 20 0 0">
+                        <Button x:Name="EditButton"
+                                Content="Редактировать"
+                                Background="#FFF8E1"
+                                Foreground="#FFB300"
+                                Width="120"/>
+
+                        <Button x:Name="DeleteButton"
+                                Content="Удалить"
+                                Background="#FFF8E1"
+                                Foreground="#FFB300"
+                                Width="120"
+                                Margin="10 0 0 0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="2" Padding="10" BorderThickness="1 0 0 0" BorderBrush="#FFB300">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="AddProductButton"
+                        Content="Добавить товар"
+                        Background="#FFF8E1"
+                        Foreground="#FFB300"
+                        Width="150"
+                        Margin="0 0 10 0"/>
+
+                <Button x:Name="ExportButton"
+                        Content="Экспорт"
+                        Background="#FFF8E1"
+                        Foreground="#FFB300"
+                        Width="120"/>
+
+                <Button x:Name="CloseButton"
+                        Content="Закрыть"
+                        Background="#FFF8E1"
+                        Foreground="#FFB300"
+                        Width="120"
+                        Margin="10 0 0 0"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
