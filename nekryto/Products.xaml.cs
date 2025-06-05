@@ -26,6 +26,8 @@ namespace nekryto
         private string currentSort = "";
         public string username;
 
+        private ObservableCollection<Products> orderItems = new ObservableCollection<Products>();
+
         public Products(string username)
         {
             InitializeComponent();
@@ -115,6 +117,7 @@ namespace nekryto
         {
             //MainFrame.Navigate(new OrderWindow(orderItems));
         }
+        
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0)
@@ -124,6 +127,19 @@ namespace nekryto
                 string ProductName = products.ProductName;
 
             }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if(ProductsListView.SelectedItem is Products selectedProduct)
+            {
+                orderItems.Add(selectedProduct);
+            }
+        }
+
+        private void basket_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new OrderPage(orderItems));
         }
     }
 }

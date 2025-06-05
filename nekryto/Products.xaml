@@ -67,6 +67,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Frame x:Name="MainFrame" Grid.ColumnSpan="3"/>
 
         <Border Grid.Row="0" Padding="15" Margin="0,0,0,30" BorderThickness="0 0 0 1" BorderBrush="#FFB300">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -95,6 +96,16 @@
                          Style="{StaticResource SearchTextBoxStyle}" Grid.ColumnSpan="4" Margin="5,5,5,5"
                          TextChanged="SearchBox_TextChanged" Cursor=""/>
 
+
+                <Button x:Name="basket" 
+                        Grid.Column="3"
+                        Content="Корзина" 
+                        Background="#FFF8E1"
+                        Foreground="#FFB300"
+                        Width="100"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,0,0"
+                        Click="basket_Click"/>
                 <ComboBox x:Name="CategoryCombo"
                           Grid.Column="4"
                           Background="#FFF8E1"
@@ -118,7 +129,7 @@
         <Grid Grid.Row="1" Margin="15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <ListView x:Name="ProductsListView"
@@ -167,76 +178,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-            <Border Grid.Column="1"
-                    BorderThickness="1"
-                    Padding="15">
-                <StackPanel>
-                    <TextBlock Text="Детали товара"
-                               FontSize="16"
-                               FontWeight="Bold"
-                               Margin="0 0 0 15"/>
-
-                    <Image x:Name="ProductImage"
-                           Width="200"
-                           Height="200"
-                           Stretch="Uniform"
-                           Margin="0 0 0 15"/>
-
-                    <TextBlock x:Name="ProductNameText"
-                               FontSize="16"
-                               FontWeight="SemiBold"/>
-
-                    <TextBlock x:Name="ProductPriceText"
-                               FontSize="18"
-                               FontWeight="Bold"
-                               Margin="0 5 0 15"/>
-
-                    <TextBlock x:Name="ProductDescriptionText"
-                               TextWrapping="Wrap"/>
-
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Right"
-                                Margin="0 20 0 0">
-                        <Button x:Name="EditButton"
-                                Content="Редактировать"
-                                Background="#FFF8E1"
-                                Foreground="#FFB300"
-                                Width="120"/>
-
-                        <Button x:Name="DeleteButton"
-                                Content="Удалить"
-                                Background="#FFF8E1"
-                                Foreground="#FFB300"
-                                Width="120"
-                                Margin="10 0 0 0"/>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
         </Grid>
-
-        <Border Grid.Row="2" Padding="10" BorderThickness="1 0 0 0" BorderBrush="#FFB300">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="AddProductButton"
-                        Content="Добавить товар"
-                        Background="#FFF8E1"
-                        Foreground="#FFB300"
-                        Width="150"
-                        Margin="0 0 10 0"/>
-
-                <Button x:Name="ExportButton"
-                        Content="Экспорт"
-                        Background="#FFF8E1"
-                        Foreground="#FFB300"
-                        Width="120"/>
-
-                <Button x:Name="CloseButton"
-                        Content="Закрыть"
-                        Background="#FFF8E1"
-                        Foreground="#FFB300"
-                        Width="120"
-                        Margin="10 0 0 0"/>
-            </StackPanel>
-        </Border>
     </Grid>
+    <Window.ContextMenu>
+        <ContextMenu x:Name="ProductContextMenu">
+            <MenuItem Header="Добавить к заказу" Click="MenuItem_Click"/>
+        </ContextMenu>
+    </Window.ContextMenu>
 </Window>
