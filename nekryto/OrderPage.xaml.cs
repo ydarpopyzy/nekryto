@@ -39,11 +39,15 @@ namespace nekryto
                 totalCost += item.DiscountedPrice;
                 totalDiscount += item.Price - item.DiscountedPrice;
             }
-            TotalCostText.Text = $"Общая сумма: {totalCost} ₽\nСумма скидки: {totalDiscount} ₽";
+            TotalCost.Text = $"Общая сумма: {totalCost} ₽\nСумма скидки: {totalDiscount} ₽";
         }
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Collapsed;
+            var parentWindow = Window.GetWindow(this);
+            if (parentWindow is Products productsWindow)
+            {
+                productsWindow.OrderPageContainer.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Каталог товаров" 
         WindowStartupLocation="CenterScreen"
-        Width="1200" Height="800" Background="#FFF8E1" Foreground="#FFB300">
+        Width="1200" Height="800" Background="#FFF8E1" Foreground="#FFB300" ResizeMode="NoResize">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -178,6 +178,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        </Grid>
+        <Grid x:Name="OrderPageContainer" Grid.RowSpan="3" 
+          Visibility="Collapsed" Background="#7F000000">
+            <Frame x:Name="OrderFrame" NavigationUIVisibility="Hidden"/>
         </Grid>
     </Grid>
     <Window.ContextMenu>

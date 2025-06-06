@@ -139,7 +139,15 @@ namespace nekryto
 
         private void basket_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new OrderPage(orderItems));
+            if (OrderPageContainer.Visibility == Visibility.Visible)
+            {
+                OrderPageContainer.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                OrderPageContainer.Visibility = Visibility.Visible;
+                OrderFrame.Navigate(new OrderPage(orderItems));
+            }
         }
     }
 }
